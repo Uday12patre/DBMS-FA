@@ -1,0 +1,241 @@
+:root {
+  --bg: #0b1220;
+  --surface: #101a2d;
+  --surface-2: #182540;
+  --surface-3: #1f2f45;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #38bdf8;
+  --accent-hover: #22d3ee;
+  --error: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at 20% 20%, #15213a 0%, var(--bg) 50%, #080d18 100%);
+  color: var(--text);
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main-wrapper {
+  flex: 1;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+.page-header {
+  background-color: var(--surface-2);
+  color: var(--text);
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid #1b2640;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.metric-card {
+  background: var(--surface-3);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #1f2f47;
+}
+
+.metric-card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7dd3fc;
+}
+
+.metric-card p {
+  margin: 8px 0 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section {
+  background: var(--surface-2);
+  border: 1px solid #1a2437;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.section h2 {
+  margin: 0 0 10px;
+  color: #bfdbfe;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  margin: 6px 0;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border-radius: 9px;
+  border: 1px solid #2b3a58;
+  background: #0f1a34;
+  color: var(--text);
+}
+
+input::placeholder,
+select::placeholder {
+  color: var(--muted);
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+button {
+  background-color: #0e57a4;
+  color: #f8fafc;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #1d79c8;
+}
+
+#statsData,
+#dataDisplay,
+#crimeData,
+#officerData,
+#statusData,
+#searchResult,
+#crimeCountData {
+  min-height: 52px;
+  border-radius: 10px;
+  border: 1px dashed #2f4e7a;
+  padding: 12px;
+  background: #0c172b;
+  color: var(--text);
+}
+
+#statsData:empty,
+#dataDisplay:empty,
+#crimeData:empty,
+#officerData:empty,
+#statusData:empty,
+#searchResult:empty,
+#crimeCountData:empty,
+#complaintsTableDisplay:empty {
+  display: none;
+  min-height: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.report-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.report-search input,
+.report-search button {
+  width: auto;
+  flex: 1;
+}
+
+#reports {
+  grid-column: span 3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table thead {
+  background: #1a2f45;
+}
+
+table th {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #2f4e7a;
+  color: #7dd3fc;
+  font-weight: 600;
+}
+
+table td {
+  padding: 10px 12px;
+  border: 1px solid #2f4e7a;
+  background: #0f1a34;
+  color: #e5e7eb;
+}
+
+table tr:hover {
+  background: #1a2f45;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    padding: 16px;
+  }
+  
+  #reports {
+    grid-column: span 1;
+  }
+}

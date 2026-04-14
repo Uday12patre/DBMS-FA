@@ -1,0 +1,22 @@
+<div class="section">
+  <h2>📢 Add Complaint</h2>
+
+  <input type="text" id="complainant_name" placeholder="Name" />
+  <input type="date" id="complaint_date" />
+  <input type="text" id="description" placeholder="Description" />
+
+  <button onclick="addComplaint()">Submit Complaint</button>
+</div>
+
+<h2>Add FIR</h2>
+
+<input type="number" id="complaint_id" placeholder="Complaint ID" />
+<input type="date" id="date" />
+<select id="station"></select>
+
+<button onclick="addFIR()">Submit</button>
+
+<script src="script.js"></script>
+
+<button onclick="loadFIRs()">View FIRs</button>
+<div id="firList"></div>

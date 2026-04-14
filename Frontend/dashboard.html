@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crime Management</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="layout">
+      <main class="main-wrapper">
+        <header class="page-header">
+          <h1>🚔 Crime Management Dashboard</h1>
+          <p>Real-time incident tracking & case management</p>
+        </header>
+
+        <section class="cards">
+          <article class="metric-card">
+            <h3>Total Cases</h3>
+            <p id="metaTotalCases">--</p>
+          </article>
+          <article class="metric-card">
+            <h3>Open Cases</h3>
+            <p id="metaOpenCases">--</p>
+          </article>
+          <article class="metric-card">
+            <h3>Active Investigators</h3>
+            <p id="metaInvestigators">--</p>
+          </article>
+          <article class="metric-card">
+            <h3>Active Alerts</h3>
+            <p id="metaAlerts">--</p>
+          </article>
+        </section>
+
+        <section class="grid" id="reports">
+          <div class="section" id="complaint">
+            <h2>📢 Add Complaint</h2>
+            <input type="text" id="complainant_name" placeholder="Name" />
+            <input type="date" id="complaint_date" />
+            <input type="text" id="description" placeholder="Description" />
+            <button onclick="addComplaint()">Create Complaint</button>
+            <div
+              id="complaintIdDisplay"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="fir">
+            <h2>📝 Add FIR</h2>
+            <select id="complaint_id"></select>
+            <input type="date" id="date" />
+            <select id="station"></select>
+            <button onclick="addFIR()">Register FIR</button>
+            <div
+              id="firIdDisplay"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="case">
+            <h2>📁 Create Case</h2>
+            <select id="fir_id"></select>
+            <select id="crime_type"></select>
+            <select id="location"></select>
+            <select id="officer"></select>
+            <input type="text" id="status" placeholder="Status (Open)" />
+            <button onclick="addCase()">Log Case</button>
+            <div
+              id="caseIdDisplay"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="suspect">
+            <h2>⚠️ Add Suspect</h2>
+            <input type="number" id="suspect_case_id" placeholder="Case ID" />
+            <input type="text" id="suspect_name" placeholder="Name" />
+            <input type="text" id="suspect_contact" placeholder="Contact" />
+            <input type="text" id="suspect_address" placeholder="Address" />
+            <button onclick="addSuspect()">Add Suspect</button>
+            <div
+              id="suspectFeedback"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="victim">
+            <h2>👤 Add Victim</h2>
+            <input type="number" id="victim_case_id" placeholder="Case ID" />
+            <input type="text" id="victim_name" placeholder="Name" />
+            <input type="text" id="victim_contact" placeholder="Contact" />
+            <input type="text" id="victim_address" placeholder="Address" />
+            <button onclick="addVictim()">Add Victim</button>
+            <div
+              id="victimFeedback"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="witness">
+            <h2>👀 Add Witness</h2>
+            <input type="number" id="witness_case_id" placeholder="Case ID" />
+            <input type="text" id="witness_name" placeholder="Name" />
+            <input type="text" id="witness_contact" placeholder="Contact" />
+            <input type="text" id="witness_address" placeholder="Address" />
+            <button onclick="addWitness()">Add Witness</button>
+            <div
+              id="witnessFeedback"
+              style="
+                margin-top: 10px;
+                padding: 8px;
+                background: #0c172b;
+                border-radius: 6px;
+                display: none;
+              "
+            ></div>
+          </div>
+
+          <div class="section" id="reports">
+            <h2>📋 View & Reports</h2>
+            <button
+              onclick="loadAllComplaints()"
+              style="margin-bottom: 10px; margin-right: 10px"
+            >
+              All Complaints
+            </button>
+            <button onclick="loadAllFIRs()" style="margin-bottom: 10px">
+              All FIRs
+            </button>
+            <div id="statsData"></div>
+            <div id="dataDisplay"></div>
+            <div id="crimeData"></div>
+            <div id="officerData"></div>
+            <div id="statusData"></div>
+            <div id="complaintsTableDisplay"></div>
+            <div id="firsTableDisplay"></div>
+            <div id="searchResult"></div>
+            <div id="crimeCountData"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
