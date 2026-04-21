@@ -1,3 +1,0 @@
-USE Crimedb;
-
-SELECT * FROM FIR;

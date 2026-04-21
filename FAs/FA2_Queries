@@ -1,0 +1,74 @@
+1. Create (Insert)
+Insert a new crime case into the database.
+
+db.Cases.insertOne({
+  "case_id": 8,
+  "status": "Open",
+  "crime_type": "Theft",
+  "location": { "area": "Pashan", "city": "Pune", "state": "Maharashtra", "pincode": "411008" },
+  "fir": { "fir_id": 113, "filed_date": "2026-04-21", "station_id": 13 },
+  "complaint": { "complainant_name": "Vikram Seth", "complaint_date": "2026-04-21", "description": "Laptop stolen from car." },
+  "assigned_officer": { "officer_id": 13, "name": "Suhasini Rao" },
+  "suspects": [],
+  "victims": [{ "name": "Vikram Seth", "contact": "9822114455", "address": "Pashan" }],
+  "witnesses": []
+});
+
+2. Read (Find with Filter)
+Find all "Open" cases in the area of "Pashan".
+
+db.Cases.find({ 
+  "status": "Open", 
+  "location.area": "Pashan" 
+});
+
+3. Read (Project Specific Fields)
+Get only the case_id, crime_type, and assigned_officer.name for all cases.
+
+db.Cases.find({}, { "case_id": 1, "crime_type": 1, "assigned_officer.name": 1});
+
+
+4. Update (Modify Status)
+Update the status of Case ID 1 to "Under Investigation" and add a suspect.
+
+db.Cases.updateOne(
+  { "case_id": 1 },
+  { 
+    $set: { "status": "Under Investigation" },
+    $push: { "suspects": { "name": "Unknown Biker", "contact": "N/A", "address": "Spotted near NH4" } }
+  }
+);
+
+5. Delete
+Remove a case from the system using its FIR ID.
+
+db.Cases.deleteOne({ "fir.fir_id": 112 });
+
+6. Aggregation: Find Busy Areas
+List the top 3 crime-prone areas in Pune and their case counts.
+
+db.Cases.aggregate([
+  { $group: { _id: "$location.area", count: { $sum: 1 } } },
+  { $sort: { count: -1 } },
+  { $limit: 3 }
+]);
+
+7. Aggregation (Group by Crime Type)
+Count how many cases exist for each type of crime.
+
+db.Cases.aggregate([
+  { $group: { _id: "$crime_type", total_cases: { $sum: 1 } } },
+  { $sort: { total_cases: -1 } }
+]);
+
+8. Create a Unique Index on Case ID
+
+db.Cases.createIndex({ "case_id": 1 }, { unique: true });
+
+9. Search using the Text Index
+
+db.Cases.find({ $text: { $search: "bike stolen" } });
+
+10. Search using the Text Index
+
+db.Cases.find({ $text: { $search: "bike stolen" } });
